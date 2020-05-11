@@ -1,0 +1,16 @@
+# -*- author:caoyue -*-
+from selenium import webdriver
+
+chrome_path = r'E:\drivers\chromedriver'
+driver = webdriver.Chrome(executable_path=chrome_path)
+driver.get('https://www.baidu.com/')
+
+cookies = 'BIDUPSID=046EF40BF829C75FB14FF6050129B93F; PSTM=1582123195; BAIDUID=20B25F343798C3215C333D3D8EF739B2:FG=1; BD_UPN=12314753; MCITY=-289%3A; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; H_PS_645EC=a9efRliOb5EtirKQev6z7saNCMuBukVs640fyk3uZRvpK1bBMuJ8YijQbUo; COOKIE_SESSION=11870_1_5_9_0_3_0_0_4_2_120_0_1588998430_1588998131_0_0_0_1588998143_1589010544%7C9%23281_37_1588998503%7C8; BD_HOME=1; H_PS_PSSID=1454_31169_21091_31424_30841_31270_31464_31229_30824_31164; Hm_lvt_9f14aaa038bbba8b12ec2a4a3e51d254=1589011193; Hm_lpvt_9f14aaa038bbba8b12ec2a4a3e51d254=1589011193; BDUSS=NKYjJhRE5iTjcyWEJWTGRxNkZtZ0E2YW5XTmE4WlRiVlAxRGxpdVQxNkQ4TjFlRUFBQUFBJCQAAAAAAAAAAAEAAAA-9EtvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAINjtl6DY7ZeQl'
+
+cookie_list = cookies.split(';')
+
+for cookie in cookie_list:
+    data = cookie.split('=')
+    driver.add_cookie({'name': data[0].strip(), 'value': data[1].strip()})
+
+driver.get('http://i.baidu.com/')
