@@ -12,9 +12,10 @@ class DtlSpider(scrapy.Spider):
     start_urls = ['https://www.doutula.com/photo/list/?page=1']
 
     def parse(self, response):
-        # alts = response.xpath('//div[@class="page-content text-center"]//img/@alt').getall()
+        page = response.url.split('=')[-1]
+        alts = response.xpath('//div[@class="page-content text-center"]//img/@alt').getall()
         srcs = response.xpath('//div[@class="page-content text-center"]//img/@data-original').getall()
-        item = DoutulaItem(image_urls=srcs)
+        item = DoutulaItem(image_urls=srcs, page=page, alts=alts)
         yield item
 
         next_page_url = response.xpath('//a[@rel="next"]/@href').get()

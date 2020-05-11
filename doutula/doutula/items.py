@@ -21,3 +21,5 @@ class DoutulaItem(scrapy.Item):
     # 内置
     image_urls = scrapy.Field()
     images = scrapy.Field()
+    page = scrapy.Field()
+    alts = scrapy.Field()
